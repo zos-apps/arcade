@@ -35,7 +35,27 @@
       "High score tracking",
       "Retro graphics",
       "Keyboard controls"
-    ]
+    ],
+    "screenshots": {
+      "hero": "screenshots/hero.png",
+      "images": [
+        "screenshots/1-main.png",
+        "screenshots/2-feature.png"
+      ]
+    },
+    "downloads": {
+      "web": "https://zos-apps.github.io/arcade"
+    },
+    "featured": false,
+    "tags": [
+      "games",
+      "fun",
+      "entertainment",
+      "arcade"
+    ],
+    "releaseDate": "2024-12-28",
+    "support": "https://github.com/zos-apps/arcade/issues",
+    "changelog": "https://github.com/zos-apps/arcade/releases"
   },
   "scripts": {
     "build": "tsup",
