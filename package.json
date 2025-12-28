@@ -21,7 +21,21 @@
         "height": 768
       },
       "resizable": true
-    }
+    },
+    "about": "Classic arcade games collection with retro favorites.",
+    "help": [
+      "Select a game to play",
+      "Use arrow keys for movement",
+      "Check game-specific controls"
+    ],
+    "docs": "https://zos-apps.github.io/arcade",
+    "site": "https://github.com/zos-apps/arcade",
+    "features": [
+      "Multiple classic games",
+      "High score tracking",
+      "Retro graphics",
+      "Keyboard controls"
+    ]
   },
   "scripts": {
     "build": "tsup",
@@ -54,5 +68,13 @@
     "arcade",
     "macos",
     "desktop"
-  ]
+  ],
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/zos-apps"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
 }
