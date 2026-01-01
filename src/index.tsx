@@ -1,8 +1,6 @@
-import React, { useState, useRef, useCallback, useEffect, DragEvent } from 'react';
-
-interface ArcadeProps {
-  onClose: () => void;
-}
+import { useState, useRef, useCallback, DragEvent } from 'react';
+import type { AppProps } from '@zos-apps/config';
+import { useLocalStorage } from '@zos-apps/config';
 
 interface Console {
   id: string;
@@ -70,33 +68,17 @@ const ROM_SITES: RomSite[] = [
   { name: 'itch.io', url: 'https://itch.io/games/tag-gameboy', description: 'Indie homebrew games', icon: '🎮' },
 ];
 
-const STORAGE_KEY = 'zos-arcade-state';
-
-const Arcade: React.FC<ArcadeProps> = ({ onClose }) => {
+const Arcade: React.FC<AppProps> = ({ onClose: _onClose }) => {
   const [view, setView] = useState<'browse' | 'play' | 'sites'>('browse');
   const [selectedConsole, setSelectedConsole] = useState<string | null>(null);
   const [selectedGame, setSelectedGame] = useState<Game | null>(null);
-  const [romFile, setRomFile] = useState<File | null>(null);
+  const [_romFile, setRomFile] = useState<File | null>(null);
   const [romUrl, setRomUrl] = useState<string | null>(null);
-  const [recentGames, setRecentGames] = useState<Game[]>([]);
+  const [recentGames, setRecentGames] = useLocalStorage<Game[]>('arcade-recent', []);
   const [searchQuery, setSearchQuery] = useState('');
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const emulatorRef = useRef<HTMLDivElement>(null);
-
-  // Load state
-  useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      const state = JSON.parse(saved);
-      setRecentGames(state.recentGames || []);
-    }
-  }, []);
-
-  // Save state
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ recentGames }));
-  }, [recentGames]);
 
   const processRomFile = useCallback((file: File) => {
     const ext = '.' + file.name.split('.').pop()?.toLowerCase();
